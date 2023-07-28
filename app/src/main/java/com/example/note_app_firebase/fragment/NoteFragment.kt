@@ -1,4 +1,4 @@
-package com.example.note_app_firebase
+package com.example.note_app_firebase.fragment
 
 import android.annotation.SuppressLint
 import android.content.Context.MODE_PRIVATE
@@ -13,6 +13,12 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.example.note_app_firebase.AddNoteActivity
+import com.example.note_app_firebase.utils.EncryptAndDecrypt
+import com.example.note_app_firebase.MainActivity
+import com.example.note_app_firebase.MyAdapter
+import com.example.note_app_firebase.models.NoteDataClass
+import com.example.note_app_firebase.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError

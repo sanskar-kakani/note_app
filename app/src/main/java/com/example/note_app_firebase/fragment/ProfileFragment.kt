@@ -1,4 +1,4 @@
-package com.example.note_app_firebase
+package com.example.note_app_firebase.fragment
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -12,6 +12,9 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.note_app_firebase.utils.EncryptAndDecrypt
+import com.example.note_app_firebase.user_authentication.LoginActivity
+import com.example.note_app_firebase.R
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError

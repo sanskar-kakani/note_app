@@ -1,4 +1,6 @@
-package com.example.note_app_firebase
+package com.example.note_app_firebase.models
+
+import com.example.note_app_firebase.models.NoteDataClass
 
 data class UserDataClass(
     val name:String="",

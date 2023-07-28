@@ -1,4 +1,4 @@
-package com.example.note_app_firebase
+package com.example.note_app_firebase.utils
 
 object EncryptAndDecrypt{
 

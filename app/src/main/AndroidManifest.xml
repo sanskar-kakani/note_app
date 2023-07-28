@@ -27,16 +27,16 @@
         </activity>
 
         <activity
-            android:name=".VerifyPhoneNumberActivity"
+            android:name=".user_authentication.VerifyPhoneNumberActivity"
             android:exported="false"
-            android:parentActivityName=".SignupActivity" />
+            android:parentActivityName=".user_authentication.SignupActivity" />
         <activity
-            android:name=".SignupActivity"
+            android:name=".user_authentication.SignupActivity"
             android:exported="false"
             android:label="Signup"
             android:theme="@style/Theme.Note_app_firebase" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".user_authentication.LoginActivity"
             android:exported="false">
 
         </activity>

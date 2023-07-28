@@ -1,4 +1,4 @@
-package com.example.note_app_firebase
+package com.example.note_app_firebase.user_authentication
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import com.example.note_app_firebase.R
 import com.google.android.material.textfield.TextInputLayout
 
 class SignupActivity : AppCompatActivity() {

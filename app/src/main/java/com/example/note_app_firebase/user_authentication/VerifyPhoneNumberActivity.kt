@@ -1,4 +1,4 @@
-package com.example.note_app_firebase
+package com.example.note_app_firebase.user_authentication
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -10,6 +10,9 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.note_app_firebase.R
+import com.example.note_app_firebase.models.UserDataClass
+import com.example.note_app_firebase.utils.EncryptAndDecrypt
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.*
 import com.google.firebase.auth.PhoneAuthProvider.ForceResendingToken
@@ -120,8 +123,10 @@ class VerifyPhoneNumberActivity : AppCompatActivity() {
 
                 FirebaseDatabase.getInstance()
                     .getReference("users").child(username)
-                    .setValue(UserDataClass(encryptedName, username, encryptedPhoneNo,
-                        encryptedEmail, encryptedPassword, listOf()))
+                    .setValue(
+                        UserDataClass(encryptedName, username, encryptedPhoneNo,
+                        encryptedEmail, encryptedPassword, listOf())
+                    )
 
                 //after verifying upload to firebase
 
