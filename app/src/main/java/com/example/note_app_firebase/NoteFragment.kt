@@ -23,13 +23,15 @@ import com.google.firebase.database.ValueEventListener
 class NoteFragment : Fragment() {
 
     private lateinit var username:String
-    val noteList = mutableListOf<NoteDataClass>()
+
+    val decryptedNoteList  = mutableListOf<NoteDataClass>()
 
     lateinit var noteRV :RecyclerView
 
     // when we call loadNote directly it add data to list whenever this fragment is display so
     // it add dummy data so only to to enter data when it is not present
-    val noteKeys = mutableListOf<String>();
+
+    val noteKeySet = mutableSetOf<String>()
     lateinit var progressBar :ProgressBar
 
     @SuppressLint("MissingInflatedId")
@@ -40,12 +42,11 @@ class NoteFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_note, container, false)
 
-        progressBar = view.findViewById(R.id.progress_bar);
+        progressBar = view.findViewById(R.id.progress_bar)
         progressBar.visibility = View.VISIBLE
 
         val pref = this.activity?.getSharedPreferences("login", MODE_PRIVATE)
         username = pref?.getString("username", null).toString()
-        val isLoad = pref?.getBoolean("isLoad", false)!!;
 
         val addBtn = view.findViewById<FloatingActionButton>(R.id.add_btn)
         noteRV = view.findViewById(R.id.note_rv)
@@ -53,8 +54,7 @@ class NoteFragment : Fragment() {
 
         noteRV.layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
 
-
-        noteRV.adapter = MyAdapter(noteList as ArrayList, activity as MainActivity)
+        noteRV.adapter = MyAdapter(decryptedNoteList as ArrayList, activity as MainActivity)
 
         loadNote()
 
@@ -77,9 +77,15 @@ class NoteFragment : Fragment() {
                     val noteText = childSnapshot.child("text").getValue(String::class.java)
                     val key = childSnapshot.key
 
-                    if (noteTitle != null && noteText != null && key != null && !noteKeys.contains(key)){
-                        noteList.add(NoteDataClass(noteTitle, noteText, key))
-                        noteKeys.add(key)
+                    if (noteTitle != null && noteText != null && key != null && !noteKeySet.contains(key)){
+//                        noteList.add(NoteDataClass(noteTitle, noteText, key))
+
+                        val decryptedTitle = EncryptAndDecrypt.decrypt(noteTitle)
+                        val decryptedText = EncryptAndDecrypt.decrypt(noteText)
+
+                        decryptedNoteList.add(NoteDataClass(decryptedTitle, decryptedText, key))
+//                        noteKeys.add(key)
+                        noteKeySet.add(key)
                     }
                 }
                 noteRV.adapter?.notifyDataSetChanged()
@@ -90,8 +96,10 @@ class NoteFragment : Fragment() {
             }
         })
 
-        progressBar.visibility = View.GONE;
+        progressBar.visibility = View.GONE
 
     }
+
+
 
 }

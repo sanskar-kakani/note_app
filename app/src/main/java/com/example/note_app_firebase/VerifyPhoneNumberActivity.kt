@@ -109,9 +109,19 @@ class VerifyPhoneNumberActivity : AppCompatActivity() {
                 val password = intent.getStringExtra("password").toString()
                 val email = intent.getStringExtra("email").toString()
 
+                val encryptedName = EncryptAndDecrypt.encrypt(name);
+                val encryptedPhoneNo = EncryptAndDecrypt.encrypt(phoneNo);
+                val encryptedPassword = EncryptAndDecrypt.encrypt(password);
+                val encryptedEmail = EncryptAndDecrypt.encrypt(email);
+
+//                FirebaseDatabase.getInstance()
+//                    .getReference("users").child(username)
+//                    .setValue(UserDataClass(name,username, phoneNo,email,password, listOf()))
+
                 FirebaseDatabase.getInstance()
                     .getReference("users").child(username)
-                    .setValue(UserDataClass(name,username, phoneNo,email,password, listOf()))
+                    .setValue(UserDataClass(encryptedName, username, encryptedPhoneNo,
+                        encryptedEmail, encryptedPassword, listOf()))
 
                 //after verifying upload to firebase
 
@@ -125,6 +135,10 @@ class VerifyPhoneNumberActivity : AppCompatActivity() {
             }
             else {
                 Log.d("sanskar", it.exception?.message.toString())
+                if(it.exception is FirebaseAuthInvalidCredentialsException){
+                    Toast.makeText(applicationContext, "Wrong OTP!!", Toast.LENGTH_LONG).show()
+                    progressBar.visibility = View.GONE
+                }
             }
         }
 

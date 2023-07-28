@@ -39,7 +39,12 @@ class EditNoteActivity : AppCompatActivity() {
 
             if(textStr.isNotEmpty() && titleStr.isNotEmpty()){
 
-                updateNote(username,keyIntent,titleStr,textStr)
+                val encryptedTitle = EncryptAndDecrypt.encrypt(titleStr)
+                val encryptedText = EncryptAndDecrypt.encrypt(textStr)
+
+//                updateNote(username,keyIntent,titleStr,textStr)
+
+                updateNote(username, keyIntent, encryptedTitle, encryptedText)
 
                 val intent = Intent(this, MainActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

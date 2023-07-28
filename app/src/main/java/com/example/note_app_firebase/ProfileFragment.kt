@@ -79,11 +79,23 @@ class ProfileFragment : Fragment() {
                     phoneNo = snapshot.child(username).child("phoneNo").value.toString()
                     password = snapshot.child(username).child("password").value.toString()
 
+                    val decryptedName = EncryptAndDecrypt.decrypt(name)
+                    val decryptedEmail = EncryptAndDecrypt.decrypt(email)
+                    val decryptedPhoneNo = EncryptAndDecrypt.decrypt(phoneNo)
+                    val decryptedPassword = EncryptAndDecrypt.decrypt(password)
+
+
+//                    userUsername.text = username
+//                    userName.editText!!.setText(name)
+//                    userEmail.editText!!.setText(email)
+//                    userPassword.editText!!.setText(password)
+//                    userPhoneNo.editText!!.setText(phoneNo)
+
                     userUsername.text = username
-                    userName.editText!!.setText(name)
-                    userEmail.editText!!.setText(email)
-                    userPassword.editText!!.setText(password)
-                    userPhoneNo.editText!!.setText(phoneNo)
+                    userName.editText!!.setText(decryptedName)
+                    userEmail.editText!!.setText(decryptedEmail)
+                    userPassword.editText!!.setText(decryptedPassword)
+                    userPhoneNo.editText!!.setText(decryptedPhoneNo)
 
                 }
             }

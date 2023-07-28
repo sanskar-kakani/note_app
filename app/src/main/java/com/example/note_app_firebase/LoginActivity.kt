@@ -69,10 +69,14 @@ class LoginActivity : AppCompatActivity() {
 
     private fun isUser() {
 
-        val username = loginUsername.editText?.text.toString().trim()
-        val password = loginPassword.editText?.text.toString().trim()
+        var username = loginUsername.editText?.text.toString().trim()
+        var password = loginPassword.editText?.text.toString().trim()
+
+
+        password = EncryptAndDecrypt.encrypt(password)
 
         val reference = FirebaseDatabase.getInstance().getReference("users")
+
 
         val checkUser : Query = reference.orderByChild("username").equalTo(username) // get all record that equal to username
 

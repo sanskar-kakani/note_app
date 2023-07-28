@@ -30,7 +30,11 @@ class AddNoteActivity : AppCompatActivity() {
                 val username = pref.getString("username", null)
 
                 username?.let{
-                    addNote(username, titleStr, textStr)
+                    val encryptedTitle = EncryptAndDecrypt.encrypt(titleStr)
+                    val encryptedText = EncryptAndDecrypt.encrypt(textStr)
+
+//                    addNote(username, titleStr, textStr)
+                    addNote(username, encryptedTitle, encryptedText)
                 }
 
                 val intent = Intent(this, MainActivity::class.java)
