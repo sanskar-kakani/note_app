@@ -13,8 +13,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.example.note_app_firebase.AddNoteActivity
-import com.example.note_app_firebase.MainActivity
+import com.example.note_app_firebase.activity.AddNoteActivity
+import com.example.note_app_firebase.activity.MainActivity
 import com.example.note_app_firebase.MyAdapter
 import com.example.note_app_firebase.R
 import com.example.note_app_firebase.models.NoteDataClass

@@ -11,6 +11,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.note_app_firebase.activity.EditNoteActivity
 import com.example.note_app_firebase.models.NoteDataClass
 import com.google.firebase.database.FirebaseDatabase
 

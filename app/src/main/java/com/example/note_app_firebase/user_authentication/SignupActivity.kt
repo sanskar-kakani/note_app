@@ -9,6 +9,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.example.note_app_firebase.R
 import com.google.android.material.textfield.TextInputLayout
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.Query
+import com.google.firebase.database.ValueEventListener
 
 class SignupActivity : AppCompatActivity() {
 
@@ -186,14 +191,30 @@ class SignupActivity : AppCompatActivity() {
         val email = regEmail.editText!!.text.toString()
         val password = regPassword.editText!!.text.toString()
 
-        val intent = Intent(this, VerifyPhoneNumberActivity::class.java)
-        intent.putExtra("name", name)
-        intent.putExtra("username", username)
-        intent.putExtra("phoneNo", phoneNo)
-        intent.putExtra("email", email)
-        intent.putExtra("password", password)
-        startActivity(intent)
 
+        //check if user already exist
+        val reference = FirebaseDatabase.getInstance().getReference("users")
+        val checkUser : Query = reference.orderByChild("username").equalTo(username)
+
+        checkUser.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    regUsername.error = "username already exist"
+                    regUsername.requestFocus()
+                }
+                else{
+                    val intent = Intent(applicationContext, VerifyPhoneNumberActivity::class.java)
+                    intent.putExtra("name", name)
+                    intent.putExtra("username", username)
+                    intent.putExtra("phoneNo", phoneNo)
+                    intent.putExtra("email", email)
+                    intent.putExtra("password", password)
+                    startActivity(intent)
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {}
+
+        })
     }
 
 

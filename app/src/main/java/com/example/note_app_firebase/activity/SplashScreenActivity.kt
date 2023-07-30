@@ -1,4 +1,4 @@
-package com.example.note_app_firebase
+package com.example.note_app_firebase.activity
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -8,6 +8,7 @@ import android.os.Looper
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import com.example.note_app_firebase.R
 import com.example.note_app_firebase.user_authentication.LoginActivity
 
 @SuppressLint("CustomSplashScreen")
