@@ -12,9 +12,9 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.example.note_app_firebase.utils.EncryptAndDecrypt
-import com.example.note_app_firebase.user_authentication.LoginActivity
 import com.example.note_app_firebase.R
+import com.example.note_app_firebase.user_authentication.LoginActivity
+import com.example.note_app_firebase.utils.EncryptAndDecrypt
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -87,13 +87,6 @@ class ProfileFragment : Fragment() {
                     val decryptedPhoneNo = EncryptAndDecrypt.decrypt(phoneNo)
                     val decryptedPassword = EncryptAndDecrypt.decrypt(password)
 
-
-//                    userUsername.text = username
-//                    userName.editText!!.setText(name)
-//                    userEmail.editText!!.setText(email)
-//                    userPassword.editText!!.setText(password)
-//                    userPhoneNo.editText!!.setText(phoneNo)
-
                     userUsername.text = username
                     userName.editText!!.setText(decryptedName)
                     userEmail.editText!!.setText(decryptedEmail)
@@ -107,6 +100,8 @@ class ProfileFragment : Fragment() {
             }
 
         })
+
+
     }
 
     private fun logOut() {

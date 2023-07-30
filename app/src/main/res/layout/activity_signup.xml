@@ -14,7 +14,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAllCaps="true"
         android:text="Sign Up"
+        android:fontFamily="@font/rem_medium"
         android:textSize="40sp"
         android:textColor="#fece2f"
         android:layout_gravity="center"
@@ -145,6 +147,7 @@
             android:text="Already have an account ?"
             android:background="#00000000"
             android:textColor="#000"
+            android:fontFamily="@font/rem_medium"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             />

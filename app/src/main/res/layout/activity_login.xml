@@ -11,6 +11,8 @@
 
     <TextView
         android:text="Sign in"
+        android:textAllCaps="true"
+        android:fontFamily="@font/rem_medium"
         android:textColor="#fece2f"
         android:textSize="40sp"
         android:layout_gravity="center"
@@ -64,26 +66,16 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
-            android:id="@+id/forget_password_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#00000000"
-            android:text="Forget password"
-            android:textColor="#000"
-            android:elevation="0dp"
-            android:layout_gravity="end"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            />
 
         <Button
             android:id="@+id/login_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Log in"
+            android:padding="10dp"
             android:textAllCaps="false"
             android:backgroundTint="#fece2f"
+            android:layout_marginTop="20dp"
             />
 
         <Button
@@ -92,6 +84,8 @@
             android:layout_height="wrap_content"
             android:background="#00000000"
             android:text="New user? sign up"
+
+            android:fontFamily="@font/rem_medium"
             android:textColor="#000"
             android:elevation="0dp"
             android:layout_gravity="center"

@@ -14,12 +14,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.note_app_firebase.AddNoteActivity
-import com.example.note_app_firebase.utils.EncryptAndDecrypt
 import com.example.note_app_firebase.MainActivity
 import com.example.note_app_firebase.MyAdapter
-import com.example.note_app_firebase.models.NoteDataClass
 import com.example.note_app_firebase.R
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.example.note_app_firebase.models.NoteDataClass
+import com.example.note_app_firebase.utils.EncryptAndDecrypt
+import com.google.android.material.button.MaterialButton
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -54,7 +54,7 @@ class NoteFragment : Fragment() {
         val pref = this.activity?.getSharedPreferences("login", MODE_PRIVATE)
         username = pref?.getString("username", null).toString()
 
-        val addBtn = view.findViewById<FloatingActionButton>(R.id.add_btn)
+        val addBtn = view.findViewById<MaterialButton>(R.id.add_btn)
         noteRV = view.findViewById(R.id.note_rv)
 
 

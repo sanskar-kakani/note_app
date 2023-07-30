@@ -7,7 +7,7 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.example.note_app_firebase.models.NoteDataClass
 import com.example.note_app_firebase.utils.EncryptAndDecrypt
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.button.MaterialButton
 import com.google.firebase.database.FirebaseDatabase
 
 class AddNoteActivity : AppCompatActivity() {
@@ -18,7 +18,7 @@ class AddNoteActivity : AppCompatActivity() {
 
         val title = findViewById<EditText>(R.id.add_note_title)
         val text = findViewById<EditText>(R.id.add_note_text)
-        val btn = findViewById<FloatingActionButton>(R.id.add_btn)
+        val btn = findViewById<MaterialButton>(R.id.add_btn)
 
 
 
