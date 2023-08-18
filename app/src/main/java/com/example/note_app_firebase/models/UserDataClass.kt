@@ -1,8 +1,7 @@
 package com.example.note_app_firebase.models
 
-import com.example.note_app_firebase.models.NoteDataClass
-
 data class UserDataClass(
+    val loggedIn:Boolean,
     val name:String="",
     val username:String="",
     val phoneNo:String="",

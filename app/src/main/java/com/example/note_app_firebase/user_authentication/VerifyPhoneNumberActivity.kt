@@ -124,7 +124,7 @@ class VerifyPhoneNumberActivity : AppCompatActivity() {
                 FirebaseDatabase.getInstance()
                     .getReference("users").child(username)
                     .setValue(
-                        UserDataClass(encryptedName, username, encryptedPhoneNo,
+                        UserDataClass(false,encryptedName, username, encryptedPhoneNo,
                         encryptedEmail, encryptedPassword, listOf())
                     )
 

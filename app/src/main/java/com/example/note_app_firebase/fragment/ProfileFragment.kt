@@ -112,6 +112,10 @@ class ProfileFragment : Fragment() {
                 .setMessage("Do you want to exit?")
                 .setIcon(R.drawable.baseline_logout_24)
                 .setPositiveButton("yes") { _, _ ->
+
+                    FirebaseDatabase.getInstance().getReference("users").child(username)
+                        .child("loggedIn").setValue(false)
+
                     val intent = Intent(activity, LoginActivity::class.java)
 
                     val pref =

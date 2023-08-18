@@ -87,22 +87,34 @@ class LoginActivity : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
                     val passwordFromDB = snapshot.child(username).child("password").value.toString()
+                    val loggedIn = snapshot.child(username).child("loggedIn").value.toString()
 
                     if(password == passwordFromDB){
 
-                        val intent = Intent(applicationContext, MainActivity::class.java)
-                        intent.putExtra("username" , username)
+                        if(loggedIn == "false"){
 
-                        val pref = getSharedPreferences("login" , MODE_PRIVATE)
-                        val editor = pref.edit()
-                        editor.putString("username" , snapshot.child(username).child("username").value.toString())
-                        editor.apply()
-                        //username is use to fetch data of user and maintain sign in and signup
+                            FirebaseDatabase.getInstance().getReference("users").child(username)
+                                .child("loggedIn").setValue(true)
+
+                            val intent = Intent(applicationContext, MainActivity::class.java)
+                            intent.putExtra("username" , username)
+
+                            val pref = getSharedPreferences("login" , MODE_PRIVATE)
+                            val editor = pref.edit()
+                            editor.putString("username" , snapshot.child(username).child("username").value.toString())
+                            editor.apply()
+                            //username is use to fetch data of user and maintain sign in and signup
 
 
-                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                        startActivity(intent)
-                        finish()
+                            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                            startActivity(intent)
+                            finish()
+                        }
+                        else{
+                            loginUsername.error = "user already logged in..."
+                            loginUsername.requestFocus()
+                            return
+                        }
                     }
                     else{
                         loginPassword.error = "wrong password"
