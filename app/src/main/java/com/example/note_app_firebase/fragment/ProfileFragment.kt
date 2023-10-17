@@ -7,8 +7,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -16,12 +18,8 @@ import com.example.note_app_firebase.R
 import com.example.note_app_firebase.user_authentication.LoginActivity
 import com.example.note_app_firebase.utils.EncryptAndDecrypt
 import com.google.android.material.textfield.TextInputLayout
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.Query
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.*
+
 
 class ProfileFragment : Fragment() {
 
@@ -38,6 +36,8 @@ class ProfileFragment : Fragment() {
     lateinit var userPhoneNo : TextInputLayout
 
     private lateinit var reference : DatabaseReference
+
+    private lateinit var updateBtn: Button
 
     @SuppressLint("MissingInflatedId")
     override fun onCreateView(
@@ -58,6 +58,11 @@ class ProfileFragment : Fragment() {
         val logOutBtn = view.findViewById<ImageView>(R.id.logout)
         logOutBtn.setOnClickListener {
             logOut()
+        }
+
+        updateBtn = view.findViewById(R.id.updateBtn)
+        updateBtn.setOnClickListener{
+            updateInfo()
         }
 
         return view
@@ -102,6 +107,46 @@ class ProfileFragment : Fragment() {
         })
 
 
+    }
+
+    private fun updateInfo(){
+
+        val newName = userName.editText?.text.toString()
+        val newPassword = userPassword.editText?.text.toString()
+        val newEmail = userEmail.editText?.text.toString()
+
+        if(newName.isEmpty() || newPassword.isEmpty() || newEmail.isEmpty()){
+            Toast.makeText(activity, "value cannot be empty", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        Log.d("ProfileFragment", "newName: $newName")
+        Log.d("ProfileFragment", "newPassword: $newPassword")
+        Log.d("ProfileFragment", "newEmail: $newEmail")
+
+        Log.e("sanskar", newName)
+
+        val encryptedName = EncryptAndDecrypt.encrypt(newName)
+        val encryptedEmail = EncryptAndDecrypt.encrypt(newEmail)
+        val encryptedPassword = EncryptAndDecrypt.encrypt(newPassword)
+
+        FirebaseDatabase.getInstance().getReference("users").child(username)
+            .child("name").setValue(encryptedName)
+
+
+        FirebaseDatabase.getInstance().getReference("users").child(username)
+            .child("email").setValue(encryptedEmail)
+
+        FirebaseDatabase.getInstance().getReference("users").child(username)
+            .child("password").setValue(encryptedPassword)
+
+        Toast.makeText(activity, "updated successfully !!!!", Toast.LENGTH_SHORT).show()
+
+        showUserData()
+
+        userName.clearFocus()
+        userEmail.clearFocus()
+        userPassword.clearFocus()
     }
 
     private fun logOut() {
